@@ -1,0 +1,7 @@
+D:\epam courses\ASP.NET.1501.Kupreev.Day2\Task1Tests\bin\Debug\Task1Tests.dll
+D:\epam courses\ASP.NET.1501.Kupreev.Day2\Task1Tests\bin\Debug\Task1Tests.pdb
+D:\epam courses\ASP.NET.1501.Kupreev.Day2\Task1Tests\bin\Debug\Task1.dll
+D:\epam courses\ASP.NET.1501.Kupreev.Day2\Task1Tests\bin\Debug\Task1.pdb
+D:\epam courses\ASP.NET.1501.Kupreev.Day2\Task1Tests\obj\Debug\Task1Tests.csprojResolveAssemblyReference.cache
+D:\epam courses\ASP.NET.1501.Kupreev.Day2\Task1Tests\obj\Debug\Task1Tests.dll
+D:\epam courses\ASP.NET.1501.Kupreev.Day2\Task1Tests\obj\Debug\Task1Tests.pdb
