@@ -3,15 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Task1
 {
-    public static class CustomFormatProvider
+    public class BinaryFormatter : IFormatProvider, ICustomFormatter
     {
-        public static String Convert(int value, int toBase)
+        public object GetFormat(Type formatType)
         {
-            if (value < 0 || (toBase != 2 && toBase != 8 && toBase != 10 && toBase != 16)) throw new ArgumentException();
-            if (toBase == 10) return value.ToString();
+            if (formatType == typeof(ICustomFormatter))
+                return this;
+            else
+                return null;
+        }
+        public String Format(String format, object arg, IFormatProvider formatProvider)
+        {
+            if (!(arg is int)) throw new ArgumentException();
+            int baseNumber;
+            string thisFmt = String.Empty;
+            if (!String.IsNullOrEmpty(format))
+                thisFmt = format.Length > 1 ? format.Substring(0, 1) : format;
+
+            switch (thisFmt.ToUpper())
+            {
+                case "B":
+                    baseNumber = 2;
+                    break;
+                case "O":
+                    baseNumber = 8;
+                    break;
+                case "H":
+                    baseNumber = 16;
+                    break;
+                default:
+                    try
+                    {
+                        return HandleOtherFormats(format, arg);
+                    }
+                    catch (FormatException e)
+                    {
+                        throw new FormatException(String.Format("The format of '{0}' is invalid.", format), e);
+                    }
+            }
+            string numericString = Convert((int)arg, baseNumber);
+            return numericString;
+        }
+        private String Convert(int value, int toBase)
+        {
+            if (value < 0) throw new ArgumentException();
             StringBuilder newString = new StringBuilder();
             int modul;
             char buffer;
@@ -35,6 +74,16 @@ namespace Task1
                 newString[j] = buffer;
             }
             return newString.ToString();
+        }
+
+        private String HandleOtherFormats(String format, object arg)
+        {
+            if (arg is IFormattable)
+                return ((IFormattable)arg).ToString(format, CultureInfo.CurrentCulture);
+            else if (arg != null)
+                return arg.ToString();
+            else
+                return String.Empty;
         }
     }
 }
