@@ -22,7 +22,7 @@ namespace Task2_3
             while ((xfirst - xlast) > accuracy);
             return xlast;
         }
-        public static long EuclideanAlgorithm(params int[] values)
+        public static int EuclideanAlgorithm(out long ticks, params int[] values)
         {
             if (values.Length < 2) throw new ArgumentException();
             Stopwatch stopWatch = new Stopwatch();
@@ -32,10 +32,11 @@ namespace Task2_3
                 values[i - 1] = EuclideanAlgorithm(values[i - 1], values[i]);
             }
             stopWatch.Stop();
-            return stopWatch.ElapsedTicks;
+            ticks = stopWatch.ElapsedTicks;
+            return values[0];
             
         }
-        public static long BinaryEuclideanAlgorithm(params int[] values)
+        public static int BinaryEuclideanAlgorithm(out long ticks, params int[] values)
         {
             if (values.Length < 2) throw new ArgumentException();
             Stopwatch stopWatch = new Stopwatch();
@@ -45,7 +46,8 @@ namespace Task2_3
                 values[i - 1] = BinaryEuclideanAlgorithm(values[i - 1], values[i]);
             }
             stopWatch.Stop();
-            return stopWatch.ElapsedTicks;
+            ticks = stopWatch.ElapsedTicks;
+            return values[0];
         }
         private static double Power(double number, int power)
         {

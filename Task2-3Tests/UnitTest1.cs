@@ -35,26 +35,30 @@ namespace Task2_3Tests
         [TestMethod]
         public void EuclideanAlgoTest1()
         {
-            var a = MathMethods.EuclideanAlgorithm(12, 36, 44);
-            Assert.IsTrue(a > 0);
+            long ticks;
+            var a = MathMethods.EuclideanAlgorithm(out ticks, 12, 36, 44);
+            Assert.AreEqual(4, a);
         }
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void EuclideanAlgoTest2()
         {
-            var a = MathMethods.EuclideanAlgorithm(12);
+            long ticks;
+            var a = MathMethods.EuclideanAlgorithm(out ticks, 12);
         }
         [TestMethod]
         public void BinaryEuclideanAlgoTest1()
         {
-            var a = MathMethods.BinaryEuclideanAlgorithm(12, 36, 44);
-            Assert.IsTrue(a > 0);
+            long ticks;
+            var a = MathMethods.BinaryEuclideanAlgorithm(out ticks, 12, 36, 44);
+            Assert.AreEqual(4, a);
         }
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void BinaryEuclideanAlgoTest2()
         {
-            var a = MathMethods.BinaryEuclideanAlgorithm(12);
+            long ticks;
+            var a = MathMethods.BinaryEuclideanAlgorithm(out ticks, 12);
         }
     }
 }
