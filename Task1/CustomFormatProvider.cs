@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Threading;
 
 namespace Task1
 {
@@ -14,7 +15,7 @@ namespace Task1
             if (formatType == typeof(ICustomFormatter))
                 return this;
             else
-                return null;
+                return Thread.CurrentThread.CurrentCulture.GetFormat(formatType);
         }
         public String Format(String format, object arg, IFormatProvider formatProvider)
         {
